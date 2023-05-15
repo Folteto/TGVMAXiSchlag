@@ -1,5 +1,5 @@
 # TGVMAXiSchlag
-Oyé chers confrères schlags qui êtes prêts à tout pour ne pas donner un centime de plus que votre abonnement TGVMAX à la SNCF ! Vous galérez à trouver des **TGVMAX** directs et vous en avez marre d'essayer toutes les gares de France en croisant les doigts pour que l'une d'elle vous permette de ne pas payer votre voyage ? Cet outil peut vous aider ;) 
+Oyé chers confrères schlags qui êtes prêts à tout pour ne pas donner un centime de plus que votre abonnement TGVMAX à la SNCF ! Vous galérez à trouver des **TGVMAX** directs et vous en avez marre d'essayer toutes les gares de France en croisant les doigts pour que l'une d'elles vous permette de ne pas payer votre voyage ? Cet outil peut vous aider ;) 
 
 # Fonctionnement
 
