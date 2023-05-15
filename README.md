@@ -44,4 +44,11 @@ Quatre options sont disponibles :
 
 # Ajouts futurs
 
-Idéalement, il faudra rendre de manière globale l'outil plus simple et agréable à utiliser. On pourra envisager une adaptation web. 
+Idéalement, il faudra rendre de manière globale l'outil plus simple et agréable à utiliser. 
+Les ajouts suivants sont prévus :
+- Prise en compte des trains de nuit
+- Tolérance sur la syntaxe des gares et système de recherche de gares 
+
+Les fonctionnalités suivants sont envisagées :
+- Interface Web
+- Suggestion de gares de départ proches si la gare fournie ne dispose d'aucun trajet disponible
