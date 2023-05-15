@@ -148,7 +148,7 @@ recursive_checker.gare_checker(
 )
 
 if len(all_compatible_journey) > 0:
-    print("Trajet trouvé ! Voici les trains à prendre :")
+    print("Voici les différents trajets trouvés :")
     for trajet in all_compatible_journey:
         print("Trajet :")
         for i in range(len(trajet)):
@@ -166,4 +166,4 @@ if len(all_compatible_journey) > 0:
             )
         print("------------------")
 else:
-    print("Aucun train trouvé, essayez une profondeur plus élevée !")
+    print("Aucun train trouvé, essayez avec plus d'étapes !")
