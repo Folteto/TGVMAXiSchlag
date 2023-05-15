@@ -1,3 +1,6 @@
+## inutile pour le moment
+
+
 def date_precedente(date):
     annee, mois, jour = date.split("-")
     if jour != "01":

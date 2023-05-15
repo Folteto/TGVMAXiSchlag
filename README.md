@@ -26,7 +26,7 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 **La date de voyage** doit être de la forme `aaaa-mm-jj`
 
 ## Options
-Deux options sont disponibles :
+Quatre options sont disponibles :
 
 - `-l`: affiche la liste des gares 
 - `-s`: indiquer un nombre maximum d'étapes pour votre voyage (2 par défaut) 
@@ -37,7 +37,7 @@ Deux options sont disponibles :
 
     python .\main.py -d "PARIS (intramuros)" -a "STRASBOURG" -t 2023-05-18 -s 3 
     python .\main.py -a "TOULOUSE MATABIAU" -d "BORDEAUX ST JEAN" -t 2023-12-05 -s 3 -f
-    python .\main.py -d "PARIS (intramuros)" -a "a" -t 2023-05-18 -p
+    python .\main.py -d "PARIS (intramuros)" -a "a" -t 2023-04-26 -p
 
 
  
