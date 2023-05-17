@@ -32,15 +32,23 @@ parser.add_argument(
 parser.add_argument(
     "-f",
     "--force",
-    help="L'algorithme recherche des trajets avec le nombre minimum d'étapes possibles. Cette option active le forçage de la recherche de trajets jusqu'au nombre d'étapes indiqué.",
+    help="The algorithm searches for routes with the minimum number of possible steps. This option activates the forcing of the route search up to the specified number of steps.",
     required=False,
     action="store_true",
+)
+parser.add_argument(
+    "-hh",
+    "--hour",
+    help="Hour of departure  if you'd like to specify one, default 00:00",
+    required=False,
+    default="00:00",
 )
 args = parser.parse_args()
 
 depart = args.depart
 arrivee = args.arrivee
 date = args.date
+hour = args.hour
 force_maxsteps = args.force
 steps = int(args.steps)
 
@@ -111,7 +119,7 @@ arrivee_req = argument_check.formalize_gare(arrivee)
 
 # on commence par vérifier qu'il n'existe pas de trajet direct entre les deux gares
 
-available_trains = api_requests.simple_request(depart_req, arrivee_req, date)
+available_trains = api_requests.simple_request(depart_req, arrivee_req, date, hour)
 
 if len(available_trains) > 0:
     print(
@@ -144,11 +152,12 @@ print("Tentative de trouver des trajets avec ", steps, " étapes...")
 
 all_compatible_journey = []
 recursive_checker.gare_checker(
-    all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps
+    all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps, hour
 )
 
 if len(all_compatible_journey) > 0:
-    print("Voici les différents trajets trouvés :")
+    print("\n####################################\n")
+    print("Récapitulatif des différents trajets trouvés :")
     for trajet in all_compatible_journey:
         print("Trajet :")
         for i in range(len(trajet)):

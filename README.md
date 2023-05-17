@@ -13,7 +13,7 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 
 # Usage
 
-    python .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date>
+    python .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
 
 ## Syntaxe 
 **Les gares** ont une syntaxe à respecter imposée par l'API SNCF. Pour afficher la liste des gares, entrer la commande suivante :
@@ -24,6 +24,7 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 > Cette liste se situe dans /data/gares.txt
 
 **La date de voyage** doit être de la forme `aaaa-mm-jj`
+**L'heure**, si indiquée, doit être de la forme `hh:mm` sur le format 24h
 
 ## Options
 Quatre options sont disponibles :
@@ -32,11 +33,13 @@ Quatre options sont disponibles :
 - `-s`: indiquer un nombre maximum d'étapes pour votre voyage (2 par défaut) 
 - `-f`: forcer la recherche jusqu'au nombre d'étapes indiquées par `-s`. Par défaut, le programme ne cherchera pas de trajets avec des étapes supplémentaires si il en a trouvé avec moins d'étapes. 
 - `-p`: affiche la liste de tous les trajets TGVMAX disponibles depuis la gare indiquée à la date donnée. 
+- `-hh`: indique une heure de départ minimale, par défaut 00:00 pour afficher tous les trajets disponibles sur le jour donné.
 
 ## Exemples 
 
     python .\main.py -d "PARIS (intramuros)" -a "STRASBOURG" -t 2023-05-18 -s 3 
     python .\main.py -a "TOULOUSE MATABIAU" -d "BORDEAUX ST JEAN" -t 2023-12-05 -s 3 -f
+    python .\main.py -a "LORRAINE TGV" -d "MEUSE TGV" -t 2023-14-03 -hh 14:30
     python .\main.py -d "PARIS (intramuros)" -a "a" -t 2023-04-26 -p
 
 

@@ -1,13 +1,17 @@
 from . import argument_check, api_requests
 
 
-def gare_checker_unique(global_tableau, arrivee, depart, date, trajet, profondeur):
+def gare_checker_unique(
+    global_tableau, arrivee, depart, date, trajet, profondeur, heure_depart
+):
     if len(trajet) == 0:
         depart_req = argument_check.formalize_gare(depart)
-        available_gares = api_requests.check_available_gares(depart_req, date)
+        available_gares = api_requests.check_available_gares(
+            depart_req, date, heure_depart
+        )
         for gare in available_gares:
             gare_checker_unique(
-                global_tableau, arrivee, depart, date, [gare], profondeur
+                global_tableau, arrivee, depart, date, [gare], profondeur, heure_depart
             )
 
     elif len(trajet) <= profondeur:
@@ -15,9 +19,11 @@ def gare_checker_unique(global_tableau, arrivee, depart, date, trajet, profondeu
             trajet[-1][1]
         )  # le dernier train du trajet a pour destination la prochaine origine
         heure_depart_min = trajet[-1][3]  # idem avec l'heure d'arrivée
-        available_gares = api_requests.check_available_gares(depart_req, date)
+        available_gares = api_requests.check_available_gares(
+            depart_req, date, heure_depart_min
+        )
         for gare in available_gares:
-            if gare[3] > gare[2] and gare[2] > heure_depart_min:
+            if gare[3] > gare[2]:  # and gare[2] > heure_depart_min:
                 newtrajet = trajet.copy()
                 newtrajet.append(gare)
                 if gare[1] == arrivee:
@@ -37,17 +43,29 @@ def gare_checker_unique(global_tableau, arrivee, depart, date, trajet, profondeu
                     print("------------------")
                 else:
                     gare_checker_unique(
-                        global_tableau, arrivee, depart, date, newtrajet, profondeur
+                        global_tableau,
+                        arrivee,
+                        depart,
+                        date,
+                        newtrajet,
+                        profondeur,
+                        heure_depart_min,
                     )
     else:
         return None
 
 
-def gare_checker(global_tableau, arrivee, depart, date, trajet, profondeur, force):
+def gare_checker(
+    global_tableau, arrivee, depart, date, trajet, profondeur, force, heure
+):
     if force:
-        gare_checker_unique(global_tableau, arrivee, depart, date, trajet, profondeur)
+        gare_checker_unique(
+            global_tableau, arrivee, depart, date, trajet, profondeur, heure
+        )
     else:
         prof = 1
         while len(global_tableau) == 0 and prof <= profondeur:
-            gare_checker_unique(global_tableau, arrivee, depart, date, trajet, prof)
+            gare_checker_unique(
+                global_tableau, arrivee, depart, date, trajet, prof, heure
+            )
             prof += 1
