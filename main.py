@@ -1,5 +1,6 @@
 import argparse
 import requests
+from pathlib import Path 
 
 
 from utilities import argument_check, api_requests, recursive_checker
@@ -90,7 +91,10 @@ print(
 
 # import des gares depuis le fichier txt
 
-with open("data\gares.txt", "r") as f:
+data_folder = Path("data/")
+file_to_open = data_folder / "gares.txt"
+
+with open(file_to_open, "r") as f:
     gares = f.readlines()
     gares = [gare.strip() for gare in gares]
     gares.sort()
@@ -104,7 +108,7 @@ if args.list_gares:
 if args.propale:
     print("Trains TGVmax disponibles depuis " + depart + " le " + date)
     trains = api_requests.check_available_gares(
-        argument_check.formalize_gare(depart), date
+        argument_check.formalize_gare(depart), date, hour
     )
     for train in trains:
         print("Vers la gare de " + train[1])
