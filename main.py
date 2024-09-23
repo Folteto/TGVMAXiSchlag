@@ -3,7 +3,6 @@
 
 import argparse
 import requests
-import readline
 from pathlib import Path 
 import argcomplete
 from utilities import argument_check, api_requests, recursive_checker
