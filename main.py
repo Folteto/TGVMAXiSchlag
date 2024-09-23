@@ -10,25 +10,11 @@ from utilities import argument_check, api_requests, recursive_checker
 
 gares_file = "data/gares.txt"
 
-class ChoicesCompleter(object):
-    def __init__(self, choices):
-        self.choices = choices
-
-    def __call__(self, **kwargs):
-        return self.choices
-
-def completer(text, state):
-    options = [i for i in commands if i.startswith(text)]
-    if state < len(options):
-        return options[state]
-    else:
-        return None
-
 def train_station_list(prefix, parsed_args, **kwargs):
+    '''Imprime à l'écran la liste des gares qui match l'entrée de l'utilisateur'''
     print(1)
     with open(gares_file, "r", encoding="utf-8") as f:
         return (gare.strip() for gare in f.readlines() if gare.startswith(prefix))
-
 
 def get_args():
     '''Défini les arguments de notre scrapper de train'''
@@ -191,7 +177,7 @@ def main():
     steps = int(args.steps)
 
     # import des gares depuis le fichier txt
-    with open("data/gares.txt", "r", encoding="utf-8") as f:
+    with open(gares_file, "r", encoding="utf-8") as f:
         gares = f.readlines()
         gares = [gare.strip() for gare in gares]
         gares.sort()
