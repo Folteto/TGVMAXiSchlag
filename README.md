@@ -13,10 +13,11 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 
  # Installation
 ```
+sudo activate-global-python-argcomplete
 git clone https://github.com/Folteto/TGVMAXiSchlag.git
 cd TGVMAXiSchlag
 pipx install -r requirement.txt
-sudo activate-global-python-argcomplete
+eval "$(register-python-argcomplete main.py)"
 chmod +x main.py
 ```
  
