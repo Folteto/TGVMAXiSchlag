@@ -13,19 +13,22 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 
  # Installation
 ```
+git clone https://github.com/Folteto/TGVMAXiSchlag.git
+cd TGVMAXiSchlag
 pipx install -r requirement.txt
-activate-global-python-argcomplete
+sudo activate-global-python-argcomplete
+chmod +x main.py
 ```
  
 
 # Usage
 
-    python .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
+    .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
 
 ## Syntaxe 
 **Les gares** ont une syntaxe à respecter imposée par l'API SNCF. Pour afficher la liste des gares, entrer la commande suivante :
 
-    python .\main.py -a "a" -d "a" -t 0 -l
+    .\main.py -a "a" -d "a" -t 0 -l
 
 > Les majuscules doivent être respectées.
 > Cette liste se situe dans /data/gares.txt
