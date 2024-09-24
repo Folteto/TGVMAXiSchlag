@@ -1,4 +1,4 @@
-import requests
+from urllib3 import request
 
 
 def parse_api_answer(answer, hour):
@@ -18,6 +18,7 @@ def parse_api_answer(answer, hour):
 
 
 def simple_request(depart, arrivee, date, hour):
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
     url = (
         "https://data.sncf.com/api/records/1.0/search/?dataset=tgvmax&q=&rows=1000"
         + "&sort=-date&facet=date&facet=origine&facet=destination&facet=od_happy_card&refine.origine="
@@ -27,10 +28,11 @@ def simple_request(depart, arrivee, date, hour):
         + "&refine.destination="
         + arrivee
     )
+    print(url)
+    response = request("GET", url)
+    print("ok")
 
-    response = requests.get(url)
-
-    return parse_api_answer(eval(response.text), hour)
+    return parse_api_answer(eval(response.data), hour)
 
 
 def check_available_gares(depart, date, hour):
@@ -43,6 +45,6 @@ def check_available_gares(depart, date, hour):
         + date
     )
 
-    response = requests.get(url)
+    response = request("GET", url)
 
-    return parse_api_answer(eval(response.text), hour)
+    return parse_api_answer(eval(response.data), hour)
