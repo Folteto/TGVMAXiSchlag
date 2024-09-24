@@ -9,6 +9,4 @@ zshrc_file="$HOME/.zshrc"
 if ! grep -q "autoload -U compinit; compinit" "$zshrc_file"; then
   echo "La commande 'compinit' n'est pas présente dans le fichier .zshrc. Ajout de la commande..."
   echo "autoload -U compinit; compinit" >> "$zshrc_file"
-  else 
-  echo "nope"
 fi
