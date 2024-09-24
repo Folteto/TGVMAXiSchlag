@@ -28,10 +28,7 @@ def simple_request(depart, arrivee, date, hour):
         + "&refine.destination="
         + arrivee
     )
-    print(url)
     response = request("GET", url)
-    print("ok")
-
     return parse_api_answer(eval(response.data), hour)
 
 
