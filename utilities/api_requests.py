@@ -42,7 +42,7 @@ def check_available_gares(depart, date, hour):
         + date
     )
     try :
-        response = request("GET", url, retries=utils.Retry(10))
+        response = request("GET", url, retries=util.Retry(10))
     except exceptions.MaxRetryError:
         return []
 
