@@ -17,10 +17,6 @@ def train_station_list(prefix, parsed_args, **kwargs):
 
 def get_args():
     '''Défini les arguments de notre scrapper de train'''
-    readline.parse_and_bind("tab: complete")
-    readline.set_completer(train_station_list)
-    print(1)
-
     parser = argparse.ArgumentParser(
     prog="TGVMAXiSchlag",
     description="Find the best TGVmax route for your trip, regardless where you have to stop",
