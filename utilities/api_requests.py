@@ -41,7 +41,9 @@ def check_available_gares(depart, date, hour):
         + "&refine.od_happy_card=OUI&refine.date="
         + date
     )
-
-    response = request("GET", url)
+    try :
+        response = request("GET", url, retries=Retry(10))
+    except urllib3.exceptions.MaxRetryError:
+        return []
 
     return parse_api_answer(eval(response.data), hour)
