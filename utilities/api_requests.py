@@ -1,4 +1,4 @@
-from urllib3 import request, exceptions, utils
+from urllib3 import request, exceptions, util
 
 
 def parse_api_answer(answer, hour):
