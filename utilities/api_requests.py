@@ -1,4 +1,4 @@
-from urllib3 import request, exceptions
+from urllib3 import request, exceptions, utils
 
 
 def parse_api_answer(answer, hour):
@@ -42,7 +42,7 @@ def check_available_gares(depart, date, hour):
         + date
     )
     try :
-        response = request("GET", url, retries=Retry(10))
+        response = request("GET", url, retries=utils.Retry(10))
     except exceptions.MaxRetryError:
         return []
 
