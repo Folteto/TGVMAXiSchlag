@@ -5,13 +5,15 @@ Oyé chers confrères schlags qui êtes prêts à tout pour ne pas donner un cen
 
 Cet outil se base sur l'API de la SNCF ouverte au public. Cette API n'étant pas actualisée en temps réel, il est possible que **l'outil affiche des trains qui n'existent pas**. Si tel est le cas, gardez votre calme, et changez votre jour de recherche, quelle idée aussi d'espérer avoir un Paris-Bordeaux un jeudi de pont ?!?
 
-# Prérequis
-Vous devez avoir les éléments suivants installés sur votre machine : 
+# Windows
 
-- Python 3 
-- Les libraires Python argparse & requests & argcomplete
+## Installation & Usage
 
- # Installation
+First download the executable file: tgvmaxischlag.exe then run it. 
+You can then open http://localhost:5000/ in your favorite browser. 
+
+# Linux & Mac
+## Installation
 ```
 git clone https://github.com/Folteto/TGVMAXiSchlag.git
 cd TGVMAXiSchlag
@@ -20,11 +22,20 @@ chmod +x install.sh
 ```
  
 
-# Usage
+## Usage
+Run it in the Web interface : 
+```
+.\run.py
+```
+And open http://localhost:5000 in your favorite browser. 
 
+### Running with a commande line
+
+To run it : 
+```
     .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
+```
 
-## Syntaxe 
 **Les gares** ont une syntaxe à respecter imposée par l'API SNCF. Pour afficher la liste des gares, entrer la commande suivante :
 
     .\main.py -a "a" -d "a" -t 0 -l
