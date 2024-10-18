@@ -33,7 +33,7 @@ And open http://localhost:5000 in your favorite browser.
 
 To run it : 
 ```
-    .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
+.\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
 ```
 
 **Les gares** ont une syntaxe à respecter imposée par l'API SNCF. Pour afficher la liste des gares, entrer la commande suivante :
