@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de Trains</title>
+</head>
+<body>
+    <h1>Recherche de Trains</h1>
+    <form action="/search" method="post">
+        <label for="gare_depart">Gare de départ:</label>
+        <select name="gare_depart" id="gare_depart">
+            {% for gare in gares %}
+                <option value="{{ gare }}">{{ gare }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="gare_arrivee">Gare d'arrivée:</label>
+        <select name="gare_arrivee" id="gare_arrivee">
+            {% for gare in gares %}
+                <option value="{{ gare }}">{{ gare }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="date_depart">Date de départ:</label>
+        <input type="date" name="date_depart" id="date_depart"><br><br>
+
+        <label for="nombre_etapes">Nombre d'étapes (optionnel):</label>
+        <input type="number" name="nombre_etapes" id="nombre_etapes"><br><br>
+
+        <button type="submit">Chercher</button>
+    </form>
+</body>
+</html>

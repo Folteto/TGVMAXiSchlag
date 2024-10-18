@@ -1,10 +1,11 @@
 #!/usr/bin/env python
-# PYTHON_ARGCOMPLETE_OK
+#@author Foltêto
+#@contributors Ybeattie
+#@Version 3.0
 
 import argparse
 import requests
 from pathlib import Path 
-import argcomplete
 from utilities import argument_check, api_requests, recursive_checker
 
 gares_file = "data/gares.txt"
@@ -19,12 +20,11 @@ def get_args():
     parser = argparse.ArgumentParser(
     prog="TGVMAXiSchlag",
     description="Find the best TGVmax route for your trip, regardless where you have to stop",
-    formatter_class=argparse.ArgumentDefaultsHelpFormatter,   
 )
 
-    parser.add_argument("-d", "--depart", help="Departure station", required=True).completer=train_station_list
+    parser.add_argument("-d", "--depart", help="Departure station", required=True)
     
-    parser.add_argument("-a", "--arrivee", help="Arrival station", required=True).completer=train_station_list
+    parser.add_argument("-a", "--arrivee", help="Arrival station", required=True)
     parser.add_argument("-t", "--date", help="Date of the trip", required=True)
     parser.add_argument(
         "-s", "--steps", help="Number of max steps", required=False, default=2
@@ -57,7 +57,6 @@ def get_args():
         required=False,
         default="00:00",
     )
-    argcomplete.autocomplete(parser)
     return parser.parse_args()
 
 # Corps
