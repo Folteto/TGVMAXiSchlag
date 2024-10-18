@@ -29,7 +29,7 @@ chmod +x install.sh
 ```
 Et ouvrir votre navigateur favori : http://localhost:5000
 
-### Running with a commande line
+### Depuis le terminal
 
 Pour le lancer : 
 ```
