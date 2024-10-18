@@ -9,8 +9,8 @@ Cet outil se base sur l'API de la SNCF ouverte au public. Cette API n'étant pas
 
 ## Installation & Usage
 
-First download the executable file: tgvmaxischlag.exe then run it. 
-You can then open http://localhost:5000/ in your favorite browser. 
+Télécharger le fichier Executable tgvmaxischlag.exe et le lancer (pas contre un mur svp). 
+Ensuite go lancer dans votre navigateur préféré : http://localhost:5000/ 
 
 # Linux & Mac
 ## Installation
@@ -23,15 +23,15 @@ chmod +x install.sh
  
 
 ## Usage
-Run it in the Web interface : 
+### Pour l'interface Web 
 ```
 .\run.py
 ```
-And open http://localhost:5000 in your favorite browser. 
+Et ouvrir votre navigateur favori : http://localhost:5000
 
 ### Running with a commande line
 
-To run it : 
+Pour le lancer : 
 ```
 .\main.py  -d "<gare de départ>" -a "<gare d'arrivée>" -t <date> -hh <heure de départ minimale>
 ```
