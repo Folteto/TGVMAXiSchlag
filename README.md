@@ -1,6 +1,3 @@
-**Non maintenu : ne fonctionne plus** 
-
-
 # TGVMAXiSchlag
 Oyé chers confrères schlags qui êtes prêts à tout pour ne pas donner un centime de plus que votre abonnement TGVMAX à la SNCF ! Vous galérez à trouver des **TGVMAX** directs et vous en avez marre d'essayer toutes les gares de France en croisant les doigts pour que l'une d'elles vous permette de ne pas payer votre voyage ? Cet outil peut vous aider ;) 
 
@@ -53,8 +50,8 @@ Quatre options sont disponibles :
 Idéalement, il faudra rendre de manière globale l'outil plus simple et agréable à utiliser. 
 Les ajouts suivants sont prévus :
 - Prise en compte des trains de nuit
-- Tolérance sur la syntaxe des gares et système de recherche de gares 
+- Tolérance sur la syntaxe des gares et système de recherche de gares
 
 Les fonctionnalités suivants sont envisagées :
-- Interface Web
+- Interface Web (@YohanBeattie est sur le sujet)
 - Suggestion de gares de départ proches si la gare fournie ne dispose d'aucun trajet disponible

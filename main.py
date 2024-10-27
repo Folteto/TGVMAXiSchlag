@@ -1,9 +1,10 @@
 import argparse
 import requests
-from pathlib import Path 
+from pathlib import Path
+import shutil
 
 
-from utilities import argument_check, api_requests, recursive_checker
+from utilities import argument_check, api_requests, recursive_checker, ascii_art
 
 
 parser = argparse.ArgumentParser(
@@ -55,39 +56,7 @@ steps = int(args.steps)
 
 # Corps
 print("\n\n")
-print(
-    " /$$$$$$$$ /$$$$$$  /$$    /$$ /$$      /$$  /$$$$$$  /$$   /$$ /$$  /$$$$$$            /$$       /$$"
-)
-print(
-    "|__  $$__//$$__  $$| $$   | $$| $$$    /$$$ /$$__  $$| $$  / $$|__/ /$$__  $$          | $$      | $$"
-)
-print(
-    "   | $$  | $$  \__/| $$   | $$| $$$$  /$$$$| $$  \ $$|  $$/ $$/ /$$| $$  \__/  /$$$$$$$| $$$$$$$ | $$  /$$$$$$   /$$$$$$"
-)
-print(
-    "   | $$  | $$ /$$$$|  $$ / $$/| $$ $$/$$ $$| $$$$$$$$ \  $$$$/ | $$|  $$$$$$  /$$_____/| $$__  $$| $$ |____  $$ /$$__  $$"
-)
-print(
-    "   | $$  | $$|_  $$ \  $$ $$/ | $$  $$$| $$| $$__  $$  >$$  $$ | $$ \____  $$| $$      | $$  \ $$| $$  /$$$$$$$| $$  \ $$"
-)
-print(
-    "   | $$  | $$  \ $$  \  $$$/  | $$\  $ | $$| $$  | $$ /$$/\  $$| $$ /$$  \ $$| $$      | $$  | $$| $$ /$$__  $$| $$  | $$"
-)
-print(
-    "   | $$  |  $$$$$$/   \  $/   | $$ \/  | $$| $$  | $$| $$  \ $$| $$|  $$$$$$/|  $$$$$$$| $$  | $$| $$|  $$$$$$$|  $$$$$$$"
-)
-print(
-    "   |__/   \______/     \_/    |__/     |__/|__/  |__/|__/  |__/|__/ \______/  \_______/|__/  |__/|__/ \_______/ \____  $$"
-)
-print(
-    "                                                                                                                /$$  \ $$"
-)
-print(
-    "                                                                                                               |  $$$$$$/"
-)
-print(
-    "                                                                                                                \______/ "
-)
+print(ascii_art.welcome_message(shutil.get_terminal_size().columns))
 
 # import des gares depuis le fichier txt
 
