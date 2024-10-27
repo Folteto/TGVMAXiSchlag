@@ -9,7 +9,7 @@ Cet outil se base sur l'API de la SNCF ouverte au public. Cette API n'étant pas
 Vous devez avoir les éléments suivants installés sur votre machine : 
 
 - Python 3 
-- Les libraires Python argparse & requests
+- Les libraires Python argparse, requests, pyfiglet
 
 # Usage
 
@@ -23,7 +23,7 @@ Vous devez avoir les éléments suivants installés sur votre machine :
 > Les majuscules doivent être respectées.
 > Cette liste se situe dans /data/gares.txt
 
-**La date de voyage** doit être de la forme `aaaa-mm-jj`
+**La date de voyage** doit être de la forme `aaaa-mm-jj`. 
 **L'heure**, si indiquée, doit être de la forme `hh:mm` sur le format 24h
 
 ## Options
