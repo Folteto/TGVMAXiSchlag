@@ -4,23 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche de Trains</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Recherche de Trains</h1>
     <form action="/search" method="post">
         <label for="gare_depart">Gare de départ:</label>
-        <select name="gare_depart" id="gare_depart">
-            {% for gare in gares %}
-                <option value="{{ gare }}">{{ gare }}</option>
-            {% endfor %}
-        </select><br><br>
+        <input type="text" name="gare_depart" id="gare_depart" list="gare_depart_list"><br><br>
+        <datalist id="gare_depart_list"></datalist>
 
         <label for="gare_arrivee">Gare d'arrivée:</label>
-        <select name="gare_arrivee" id="gare_arrivee">
-            {% for gare in gares %}
-                <option value="{{ gare }}">{{ gare }}</option>
-            {% endfor %}
-        </select><br><br>
+        <input type="text" name="gare_arrivee" id="gare_arrivee" list="gare_arrivee_list"><br><br>
+        <datalist id="gare_arrivee_list"></datalist>
 
         <label for="date_depart">Date de départ:</label>
         <input type="date" name="date_depart" id="date_depart"><br><br>
@@ -30,5 +25,31 @@
 
         <button type="submit">Chercher</button>
     </form>
+
+    <script>
+        function fetchGares(query, targetList) {
+            $.ajax({
+                url: '/search_gares',
+                method: 'GET',
+                data: { query: query },
+                success: function(data) {
+                    $(targetList).empty();
+                    data.gares.forEach(function(gare) {
+                        $(targetList).append('<option value="' + gare + '">');
+                    });
+                }
+            });
+        }
+
+        $('#gare_depart').on('input', function() {
+            var query = $(this).val();
+            fetchGares(query, '#gare_depart_list');
+        });
+
+        $('#gare_arrivee').on('input', function() {
+            var query = $(this).val();
+            fetchGares(query, '#gare_arrivee_list');
+        });
+    </script>
 </body>
 </html>

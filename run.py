@@ -2,7 +2,7 @@
 #@author ybeattie
 #@version 1
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import subprocess
 from threading import Timer
 
@@ -19,6 +19,10 @@ def index():
     '''Définit la page d'accueil et de recherche'''
     gares = get_gares()
     return render_template('index.html', gares=gares)
+
+@app.route('/search_gares', methods=['GET'])
+def search_gares():
+    return jsonify({'gares': get_gares()})
 
 @app.route('/search', methods=['POST'])
 def search():
