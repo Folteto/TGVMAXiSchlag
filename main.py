@@ -193,18 +193,19 @@ def main(args={}):
     argument_check.verify_argument(depart, arrivee, date, steps, gares)
     depart_req = argument_check.formalize_gare(depart)
     arrivee_req = argument_check.formalize_gare(arrivee)
+    try : 
+        # on commence par vérifier qu'il n'existe pas de trajet direct entre les deux gares
+        available_trains = check_direct_trains(api_requests.simple_request(depart_req, arrivee_req, date, hour), depart, arrivee, date)
 
-    # on commence par vérifier qu'il n'existe pas de trajet direct entre les deux gares
-    available_trains = check_direct_trains(api_requests.simple_request(depart_req, arrivee_req, date, hour), depart, arrivee, date)
-
-    
-    all_compatible_journey = []
-    recursive_checker.gare_checker(
-        all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps, hour
-    )
-    check_indirect_trains(all_compatible_journey, steps)
-    trajet_direct, trajet_indirect = parse_trains(available_trains, all_compatible_journey, depart, arrivee)
-
+        
+        all_compatible_journey = []
+        recursive_checker.gare_checker(
+            all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps, hour
+        )
+        check_indirect_trains(all_compatible_journey, steps)
+        trajet_direct, trajet_indirect = parse_trains(available_trains, all_compatible_journey, depart, arrivee)
+    except urllib3.exceptions.MaxRetryError:
+        print("You've made too much request for today and SNCF has blocked you. Please retry tomorrow :'(")
     return trajet_direct, trajet_indirect
 
 
