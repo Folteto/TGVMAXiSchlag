@@ -76,9 +76,9 @@ def print_graph():
     print("                                                                                                                \\______/ ")
     return 0
 
-def check_direct_trains(depart, depart_req, arrivee, arrivee_req, date, hour):
+def check_direct_trains(available_trains, depart, arrivee, date):
     '''Check les trains en tgvmax qui sont direct entre les 2 gares'''
-    available_trains = api_requests.simple_request(depart_req, arrivee_req, date, hour)
+    #available_trains = api_requests.simple_request(depart_req, arrivee_req, date, hour)
     if len(available_trains) > 0:
         print(
             "Il existe au moins un trajet direct entre "
@@ -100,19 +100,15 @@ def check_direct_trains(depart, depart_req, arrivee, arrivee_req, date, hour):
             + " le "
             + date
         )
+    return available_trains
 
-def check_indirect_trains(depart, arrivee, date, hour, steps, force_maxsteps):
+def check_indirect_trains(all_compatible_journey, steps):
     '''Check les tgvmax disponible entre les deux gares fourni avec des correspondances'''
     print("")
     print("Recherche de trajets avec étapes...")
     print("")
 
     print("Tentative de trouver des trajets avec ", steps, " étapes...")
-
-    all_compatible_journey = []
-    recursive_checker.gare_checker(
-        all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps, hour
-    )
 
     if len(all_compatible_journey) > 0:
         print("\n####################################\n")
@@ -136,9 +132,34 @@ def check_indirect_trains(depart, arrivee, date, hour, steps, force_maxsteps):
     else:
         print("Aucun train trouvé, essayez avec plus d'étapes !")
 
-def main():
+def parse_trains(available_trains, all_compatible_journey, depart, arrivee):
+    parsed_trajets_direct = []
+    for trajet in available_trains:
+        parsed_trajets_direct.append({
+            'depart': depart,
+            'heure_depart': trajet[2],
+            'arrivee': arrivee,
+            'heure_arrivee': trajet[3]
+        })
+
+    parsed_trajets_indirect = []
+    for trajet in all_compatible_journey:
+        parsed_trains = []
+        for train in trajet:
+            parsed_trains.append({
+                'depart': train[0],
+                'heure_depart': train[2],
+                'arrivee': train[1],
+                'heure_arrivee': train[3],
+            })
+        parsed_trajets_indirect.append(parsed_trains)
+    return parsed_trajets_direct, parsed_trajets_indirect
+
+def main(args={}):
     '''Fonction principal récupérant les argument utilisateur avant de checker les trains direct et indirect disponible en tgvmax'''
-    args = get_args()
+    if args == {}:
+        args = get_args()
+
     print_graph()
     depart = args.depart
     arrivee = args.arrivee
@@ -168,18 +189,24 @@ def main():
             print("Vers la gare de " + train[1])
             print("Heure de départ : " + train[2] + " Heure d'arrivée : " + train[3])
         exit()
-
     # vérification des arguments et formalisation des gares
     argument_check.verify_argument(depart, arrivee, date, steps, gares)
     depart_req = argument_check.formalize_gare(depart)
     arrivee_req = argument_check.formalize_gare(arrivee)
 
     # on commence par vérifier qu'il n'existe pas de trajet direct entre les deux gares
-    check_direct_trains(depart, depart_req, arrivee, arrivee_req, date, hour)
-    check_indirect_trains(depart, arrivee, date, hour, steps, force_maxsteps)
+    available_trains = check_direct_trains(api_requests.simple_request(depart_req, arrivee_req, date, hour), depart, arrivee, date)
 
-    return 0
+    
+    all_compatible_journey = []
+    recursive_checker.gare_checker(
+        all_compatible_journey, arrivee, depart, date, [], steps, force_maxsteps, hour
+    )
+    check_indirect_trains(all_compatible_journey, steps)
+    trajet_direct, trajet_indirect = parse_trains(available_trains, all_compatible_journey, depart, arrivee)
+
+    return trajet_direct, trajet_indirect
 
 
 if __name__=='__main__':
-    main()
+    main(get_args())

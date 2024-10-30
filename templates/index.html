@@ -4,29 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche de Trains</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="static/styles.css?v=2.0">
+    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-    <h1>Recherche de Trains</h1>
-    <form action="/search" method="post">
-        <label for="gare_depart">Gare de départ:</label>
-        <input type="text" name="gare_depart" id="gare_depart" list="gare_depart_list"><br><br>
-        <datalist id="gare_depart_list"></datalist>
+<body class="modal-open">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+        <div class="container-fluid custom-container">
+            <a class="navbar-brand text-dark fw-bold me-auto" href="/">
+                <img src="static/logo_schlag.png" height="70" alt="TGVMAXiSchlag" class="logo-dark m-2">
+            </a>
+            <div>
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="text-center text-white">
+                            <h1 class="mb-4">TGV MaxiSchlag</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto navbar-center">
+                    <li class="nav-item"><a href="more" class="nav-link text-light" style="position: absolute; top: 0; right: 0; border: 5px;">À propos</a></li>
+                </ul>
+            </div>
+        </div></nav>
+    <div class="main-content">
+        <div class="page-content">
+            <h3 class="mb-4"> </h3>
+            <section class="section">
+                <div class="container">
+                <form id="rechercheTrain" action="/search" method="post">
+                    <label for="gare_depart">Gare de départ:</label>
+                    <input type="text" name="gare_depart" id="gare_depart" list="gare_depart_list"><br><br>
+                    <datalist id="gare_depart_list"></datalist>
 
-        <label for="gare_arrivee">Gare d'arrivée:</label>
-        <input type="text" name="gare_arrivee" id="gare_arrivee" list="gare_arrivee_list"><br><br>
-        <datalist id="gare_arrivee_list"></datalist>
+                    <label for="gare_arrivee">Gare d'arrivée:</label>
+                    <input type="text" name="gare_arrivee" id="gare_arrivee" list="gare_arrivee_list"><br><br>
+                    <datalist id="gare_arrivee_list"></datalist>
 
-        <label for="date_depart">Date de départ:</label>
-        <input type="date" name="date_depart" id="date_depart"><br><br>
+                    <label for="date_depart">Date de départ:</label>
+                    <input type="date" name="date_depart" id="date_depart"><br><br>
 
-        <label for="nombre_etapes">Nombre d'étapes (optionnel):</label>
-        <input type="number" name="nombre_etapes" id="nombre_etapes"><br><br>
+                    <label for="nombre_etapes">Nombre d'étapes (optionnel):</label>
+                    <input type="number" name="nombre_etapes" id="nombre_etapes"><br><br>
 
-        <button type="submit">Chercher</button>
-    </form>
+                    <button type="submit">Chercher</button>
+                </form>
 
+                <div id="loading-spinner" style="display: none; text-align: center;">
+                    <i class="fas fa-spinner fa-spin fa-3x"></i>
+                    <p>Recherche en cours...</p>
+                </div>
+                <div id="results"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    
     <script>
+        $(document).ready(function() {
+            $('#rechercheTrain').on('submit', function(e) {
+            e.preventDefault();
+            $('#loading-spinner').show();
+            $('#results').empty();
+            $.ajax({
+                type: 'POST',
+                url: '/search',
+                data: $(this).serialize(),
+                success: function(response) {
+                $('#loading-spinner').hide();
+                $('#results').html(response);
+                }
+            });
+            });
+        });
+
         function fetchGares(query, targetList) {
             $.ajax({
                 url: '/search_gares',
@@ -51,5 +113,6 @@
             fetchGares(query, '#gare_arrivee_list');
         });
     </script>
+
 </body>
 </html>

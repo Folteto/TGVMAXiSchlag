@@ -5,6 +5,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import subprocess
 from threading import Timer
+from main import main
+
+class Namespace:
+    def __init__(self, **kwargs):
+        self.__dict__.update(kwargs)
 
 app = Flask(__name__)
 
@@ -20,36 +25,35 @@ def index():
     gares = get_gares()
     return render_template('index.html', gares=gares)
 
+@app.route('/more')
+def about_us():
+    '''Définit la page "About us""'''
+    return render_template('info.html')
+
 @app.route('/search_gares', methods=['GET'])
 def search_gares():
+    '''Permet d'aider l'utilisateur avec la liste des gares qui matchent'''
     return jsonify({'gares': get_gares()})
+
 
 @app.route('/search', methods=['POST'])
 def search():
-    '''Fonciton de recherche et redirection vers l'output'''
+    '''Fonction de recherche et redirection vers l'output'''
     gare_depart = request.form['gare_depart']
     gare_arrivee = request.form['gare_arrivee']
     date_depart = request.form['date_depart']
     nombre_etapes = request.form.get('nombre_etapes', '')
 
-    command = [
-        'python3', 'main.py',
-        '-d', gare_depart,
-        '-a', gare_arrivee,
-        '-t', date_depart
-    ]
-    if nombre_etapes:
-        command.extend(['-s', nombre_etapes])
-
-    # Exécuter la commande et capturer la sortie
-    result = subprocess.run(command, capture_output=True, text=True)
+    args = Namespace(depart=gare_depart, arrivee=gare_arrivee, date=date_depart, steps=nombre_etapes, hour="00:01", force=False, list_gares=False, propale=False)
+    
+    direct_trains, indirect_trains = main(args)
 
     # Afficher le résultat sur la page web
-    return render_template('result.html', result=result.stdout)
+    return render_template('result.html', resultats=[direct_trains, indirect_trains])
 
 if __name__ == '__main__':
     print("Please clik here : http://127.0.0.1:5000")
-    app.run()
+    app.run(debug=True)
     
     
 

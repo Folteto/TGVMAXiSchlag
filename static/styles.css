@@ -1,0 +1,22 @@
+.trajetindir {
+    background: lightblue;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 50px);
+    grid-gap: 20px;
+  }
+  
+  .trajetdir {
+    background: lightblue;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 20px);
+    grid-gap: 20px;
+  }
+
+  .train-icon{
+    color: CornflowerBlue ;
+  }
+
+  .col-lg-6{-webkit-box-flex:0;-ms-flex:0 0 auto;flex:0 0 auto;width:50%}
+  
