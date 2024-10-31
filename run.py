@@ -43,6 +43,7 @@ def search():
     gare_arrivee = request.form['gare_arrivee']
     date_depart = request.form['date_depart']
     nombre_etapes = request.form.get('nombre_etapes', '')
+    nombre_etapes = 2 if nombre_etapes == '' else nombre_etapes
 
     args = Namespace(depart=gare_depart, arrivee=gare_arrivee, date=date_depart, steps=nombre_etapes, hour="00:01", force=False, list_gares=False, propale=False)
     

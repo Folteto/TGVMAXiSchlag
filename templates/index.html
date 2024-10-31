@@ -37,6 +37,7 @@
                 </ul>
             </div>
         </div></nav>
+    <div class="alert alert-warning" role="alert">Cette application utilise l'API de la SNCF qui ne s'appuie pas sur la véritable base de donnée. Il est donc possible que les données fournies ne soit pas à jour. Nous ne nous excusons pas pour la gêne occassionée.</div>
     <div class="main-content">
         <div class="page-content">
             <h3 class="mb-4"> </h3>
@@ -54,7 +55,7 @@
                     <label for="date_depart">Date de départ:</label>
                     <input type="date" name="date_depart" id="date_depart"><br><br>
 
-                    <label for="nombre_etapes">Nombre d'étapes (optionnel):</label>
+                    <label for="nombre_etapes">Nombre d'étapes (défaut : 2):</label>
                     <input type="number" name="nombre_etapes" id="nombre_etapes"><br><br>
 
                     <button type="submit">Chercher</button>
@@ -62,7 +63,7 @@
 
                 <div id="loading-spinner" style="display: none; text-align: center;">
                     <i class="fas fa-spinner fa-spin fa-3x"></i>
-                    <p>Recherche en cours...</p>
+                    <p>Recherche en cours... (Plus il y a d'étapes, plus c'est long)</p>
                 </div>
                 <div id="results"></div>
                 </div>
