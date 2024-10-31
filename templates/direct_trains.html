@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trains directs disponibles</title>
+    <style>
+        /* Styles CSS pour la mise en page des trains directs disponibles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .train {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .train h3 {
+            margin: 0;
+        }
+
+        .train p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Trains directs disponibles</h1>
+    <div class="container">
+        <h2>Liste des trains directs le {{date}} :</h2>
+        {% for train in direct_trains %}
+        <tr>
+            <div class="train">
+
+                <td>Vers la gare de {{ train[1] }}</td>
+                <td>Heure de départ : {{ train[2] }}</td>
+                <td>Heure d'arrivée : {{ train[3] }}</td>
+            </div>
+        </tr>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Résultats de recherche</title>
+    <style>
+        /* Styles CSS pour la mise en page des résultats de recherche */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .result {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .result h3 {
+            margin: 0;
+        }
+
+        .result p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Résultats de recherche</h1>
+    <div class="container">
+        <h2>Résultats :</h2>
+        {% if results %}
+        {% for result in results %}
+        <div class="result">
+            <h3>{{ result.title }}</h3>
+            <p>{{ result.description }}</p>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>Aucun résultat trouvé.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

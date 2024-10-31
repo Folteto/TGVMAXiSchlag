@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trajets disponibles</title>
+    <style>
+        /* Styles CSS pour la mise en page des trajets disponibles */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .journey {
+            background-color: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .journey h3 {
+            margin: 0;
+        }
+
+        .journey p {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Trajets disponibles</h1>
+    <div class="container">
+        <h2>Récapitulatif des trajets :</h2>
+        {% if journeys %}
+        {% for journey in journeys %}
+        <div class="journey">
+            <h3>Trajet :</h3>
+            {% for train in journey %}
+            <p>Train {{ loop.index }} :</p>
+            <p>Départ de {{ train[0] }} à {{ train[2] }} ---> Arrivée à {{ train[1] }} à {{ train[3] }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>Aucun trajet trouvé.</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

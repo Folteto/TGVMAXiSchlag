@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>TGVMAXiSchlag</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TGVMAXiSchlag</h1>
+    <div class="container">
+        <form action="/search" method="post">
+            <div class="form-group">
+                <label for="depart">Gare de départ :</label>
+                <select name="depart" id="depart">
+                    {% for gare in gares %}
+                    <option value="{{ gare }}">{{ gare }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="arrivee">Gare d'arrivée:</label>
+                <select name="arrivee" id="arrivee">
+                    {% for gare in gares %}
+                    <option value="{{ gare }}">{{ gare }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date du voyage :</label>
+                <input type="text" name="date" id="date" required>
+                <label for="heure">Heure du voyage :</label>
+                <input type="text" name="heure" id="heure" required>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        flatpickr('#date', {
+                            dateFormat: 'Y-m-d',
+                            minDate: 'today'
+                        });
+                        flatpickr('#heure', {
+                            enableTime: true,
+                            noCalendar: true,
+                            dateFormat: 'H:i',
+                            time_24hr: true
+                        });
+                    });
+                </script>
+            </div>
+            <div class="form-group">
+                <label for="steps">Nombre d'étapes maximum:</label>
+                <input type="number" id="steps" name="steps" min="1" value="2">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="force" name="force">
+                <label for="force">Forcer le nombre d'étapes</label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Rechercher">
+            </div>
+            {% if show_confirmation %}
+            <div class="confirmation">
+                Je check les trains mon vieux frérot !
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+
+</html>
