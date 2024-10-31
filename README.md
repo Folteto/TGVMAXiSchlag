@@ -16,11 +16,11 @@ chmod +x install.sh
  
 
 ## Usage
-### Pour l'interface Web 
+### Depuis l'interface Web 
 ```
 .\run.py
 ```
-Et ouvrir votre navigateur favori : http://localhost:5000
+Et ouvrir dans votre navigateur favori : http://localhost:5000
 
 ### Depuis le terminal
 
