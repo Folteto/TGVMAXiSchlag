@@ -5,13 +5,6 @@ Oyé chers confrères schlags qui êtes prêts à tout pour ne pas donner un cen
 
 Cet outil se base sur l'API de la SNCF ouverte au public. Cette API n'étant pas actualisée en temps réel, il est possible que **l'outil affiche des trains qui n'existent pas**. Si tel est le cas, gardez votre calme, et changez votre jour de recherche, quelle idée aussi d'espérer avoir un Paris-Bordeaux un jeudi de pont ?!?
 
-# Windows
-
-## Installation & Usage
-
-Télécharger le fichier Executable tgvmaxischlag.exe et le lancer (pas contre un mur svp). 
-Ensuite go lancer dans votre navigateur préféré : http://localhost:5000/ 
-
 # Linux & Mac
 ## Installation
 ```
