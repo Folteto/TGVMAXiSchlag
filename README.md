@@ -13,7 +13,14 @@ cd TGVMAXiSchlag
 chmod +x install.sh
 ./install.sh
 ```
- 
+
+Il est possible que le script install ait des difficultés. Souvent 
+```
+source venc/bin/activate
+```
+suffit à régler les difficultés d'installation. 
+
+Cette installation fonctionne aussi sur Android avec Termux. 
 
 ## Usage
 ### Depuis l'interface Web 
