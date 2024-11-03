@@ -16,7 +16,7 @@ chmod +x install.sh
 
 Il est possible que le script install ait des difficultés. Souvent 
 ```
-source venc/bin/activate
+source venv/bin/activate
 ```
 suffit à régler les difficultés d'installation. 
 
