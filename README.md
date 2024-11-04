@@ -12,13 +12,8 @@ git clone https://github.com/Folteto/TGVMAXiSchlag.git
 cd TGVMAXiSchlag
 chmod +x install.sh
 ./install.sh
-```
-
-Il est possible que le script install ait des difficultés. Souvent 
-```
 source venv/bin/activate
 ```
-suffit à régler les difficultés d'installation. 
 
 Cette installation fonctionne aussi sur Android avec Termux. 
 
