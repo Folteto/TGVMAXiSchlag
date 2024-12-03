@@ -12,7 +12,6 @@ git clone https://github.com/Folteto/TGVMAXiSchlag.git
 cd TGVMAXiSchlag
 chmod +x install.sh
 ./install.sh
-source venv/bin/activate
 ```
 
 Cette installation fonctionne aussi sur Android avec Termux. 
@@ -20,6 +19,7 @@ Cette installation fonctionne aussi sur Android avec Termux.
 ## Usage
 ### Depuis l'interface Web 
 ```
+source venv/bin/activate
 .\run.py
 ```
 Et ouvrir dans votre navigateur favori : http://localhost:5000
